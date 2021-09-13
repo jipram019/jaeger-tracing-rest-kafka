@@ -1,8 +1,10 @@
 package com.tracing.kafka.collect.config;
 
+import com.tracing.kafka.collect.collector.TracingCollector;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,12 @@ import java.util.Map;
 
 @Configuration
 public class CollectorConfig {
+    @Value("${collect.jaeger.host}")
+    String jaegerHost;
+
+    @Value("${collect.jaeger.port}")
+    Integer jaegerPort;
+
     private final KafkaProperties kafkaProperties;
 
     public CollectorConfig(KafkaProperties kafkaProperties) {
@@ -44,5 +52,10 @@ public class CollectorConfig {
         containerFactory.setConsumerFactory(collectorConsumerFactory());
         return containerFactory;
     }
-    
+
+    @Bean
+    public TracingCollector tracingCollector(){
+        return new TracingCollector(jaegerHost, jaegerPort);
+    }
+
 }

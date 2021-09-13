@@ -1,4 +1,4 @@
-# jaeger-tracing-rest-kafka
+# Distributed Tracing with Jaeger and OpenTracing
 
 This project will simulate tracing of multiple microservices using OpenTracing and Jaeger.
 

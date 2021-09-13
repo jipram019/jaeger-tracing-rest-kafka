@@ -1,7 +1,6 @@
 package com.tracing.kafka.app2.processor;
 
-import com.tracing.kafka.app2.config.TracingRestCustomInterceptor;
-import io.opentracing.contrib.spring.web.client.TracingRestTemplateInterceptor;
+import com.tracing.kafka.app2.config.tracing.TracingRestCustomInterceptor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Headers;

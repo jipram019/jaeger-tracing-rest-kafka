@@ -1,4 +1,4 @@
-package com.tracing.kafka.app2.config;
+package com.tracing.kafka.app2.config.tracing;
 
 import io.opentracing.Scope;
 import io.opentracing.Span;

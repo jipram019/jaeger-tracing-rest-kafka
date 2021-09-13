@@ -6,7 +6,7 @@ The system collects trace injected into either Kafka headers or HTTP headers and
 
 For now, the system still have a single point of failure since all the traces all collected directly into Jaeger endpoint.
 
-app3 (KafkaProducer, KafkaStream) --> Jaeger endpoint
+app3 (KafkaProducer, KafkaStream) --> Jaeger endpoint \n
 app2 (KafkaProducer, KafkaConsumer, REST HTTP Call) --> Jaeger endpoint
 app1 (KafkaConsumer, KafkaProducer) --> Jaeger endpoint
 app4 (RESTServices) --> Jaeger endpoint

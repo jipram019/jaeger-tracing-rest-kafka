@@ -31,4 +31,9 @@ public class TopicConfiguration {
     public NewTopic sumTopic() {
         return new NewTopic("sum.topic", 1, (short) 1);
     }
+
+    @Bean
+    public NewTopic tracingTopic() {
+        return new NewTopic("trace.topic", 1, (short) 1);
+    }
 }

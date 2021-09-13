@@ -9,6 +9,7 @@
         <module name="app2" />
         <module name="app1" />
         <module name="config" />
+        <module name="collect" />
         <module name="app4" />
         <module name="app3" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="app2" target="1.8" />
       <module name="app3" target="1.8" />
       <module name="app4" target="1.8" />
+      <module name="collect" target="1.8" />
       <module name="config" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -27,6 +29,7 @@
       <module name="app2" options="-parameters" />
       <module name="app3" options="-parameters" />
       <module name="app4" options="-parameters" />
+      <module name="collect" options="-parameters" />
       <module name="config" options="-parameters" />
     </option>
   </component>

@@ -1,4 +1,4 @@
-package com.tracing.rest.app4.config;
+package com.tracing.rest.app4.config.tracing;
 
 import io.jaegertracing.internal.samplers.ConstSampler;
 import io.opentracing.Tracer;
@@ -11,11 +11,11 @@ import javax.annotation.PostConstruct;
 
 @Configuration
 public class TracingConfig {
-    @Value("${jaeger.tracer.host}")
-    private String jaegerHost;
+    @Value("${bootstrap.server}")
+    String bootstrapServer;
 
-    @Value("${jaeger.tracer.port}")
-    private Integer jaegerPort;
+    @Value("${tracing.topic}")
+    String tracingTopic;
 
     @Value("${spring.application.name}")
     private String appName;
@@ -33,9 +33,7 @@ public class TracingConfig {
                                 .withLogSpans(true)
                                 .withMaxQueueSize(10000)
                                 .withSender(
-                                        io.jaegertracing.Configuration.SenderConfiguration.fromEnv()
-                                                .withAgentHost(jaegerHost)
-                                                .withAgentPort(jaegerPort)
+                                        new SenderConfig(bootstrapServer, tracingTopic)
                                 ))
                 .getTracer();
     }

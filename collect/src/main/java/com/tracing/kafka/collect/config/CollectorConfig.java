@@ -4,6 +4,7 @@ import com.tracing.kafka.collect.collector.TracingCollector;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.thrift.transport.TTransportException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
@@ -54,7 +55,7 @@ public class CollectorConfig {
     }
 
     @Bean
-    public TracingCollector tracingCollector(){
+    public TracingCollector tracingCollector() throws TTransportException {
         return new TracingCollector(jaegerHost, jaegerPort);
     }
 

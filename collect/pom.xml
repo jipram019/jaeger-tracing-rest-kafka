@@ -48,6 +48,13 @@
 			<artifactId>libthrift</artifactId>
 			<version>0.14.2</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jaegertracing/jaeger-thrift -->
+		<dependency>
+			<groupId>io.jaegertracing</groupId>
+			<artifactId>jaeger-thrift</artifactId>
+			<version>1.6.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

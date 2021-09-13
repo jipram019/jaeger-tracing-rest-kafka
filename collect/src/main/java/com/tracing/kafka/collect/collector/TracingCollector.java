@@ -1,6 +1,7 @@
 package com.tracing.kafka.collect.collector;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.thrift.transport.TTransportException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,7 +13,7 @@ public class TracingCollector {
 
     private final JaegerClient jaegerClient;
 
-    public TracingCollector(String jaegerHost, int jaegerPort) {
+    public TracingCollector(String jaegerHost, int jaegerPort) throws TTransportException {
         jaegerClient = new JaegerClient(jaegerHost,jaegerPort);
     }
 
@@ -31,8 +32,8 @@ public class TracingCollector {
         }
 
         try {
-            // To implement
-            jaegerClient.send(record.value());
+            // Sending trace to Jaeger
+            jaegerClient.dumpTrace(record.value());
         } catch (Exception e) {
             String message = String.format("Unable to send spans to Jaeger, retrying offset %s", record.offset());
             logger.error("{}, but first sleep for {}", message, SLEEP_DURATION_IN_SECONDS);

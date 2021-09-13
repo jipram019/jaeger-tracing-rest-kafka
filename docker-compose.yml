@@ -41,7 +41,7 @@ services:
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
       
   config:
-    image: jipram017/event-tracing-config:0.0.1
+    image: jipram017/event-tracing-config:1.0.0
     container_name: config
     depends_on:
       - zookeeper
@@ -159,7 +159,7 @@ services:
       - 9300:9300
       
   app4:
-    image: jipram017/event-tracing-app4:0.0.4
+    image: jipram017/event-tracing-app4:1.0.0
     container_name: app4
     depends_on:
       - jaeger
@@ -171,7 +171,7 @@ services:
     restart: always
     
   app3:
-    image: jipram017/event-tracing-app3:0.0.3
+    image: jipram017/event-tracing-app3:1.0.0
     container_name: app3
     depends_on:
       - jaeger
@@ -202,7 +202,7 @@ services:
     restart: always
     
   app1:
-    image: jipram017/event-tracing-app1:0.0.1
+    image: jipram017/event-tracing-app1:1.0.0
     container_name: app1
     depends_on:
       - jaeger
@@ -214,6 +214,21 @@ services:
       - spring.kafka.bootstrap-servers=broker:29092
       - jaeger.tracer.host=jaeger
       - jaeger.tracer.port=6831
+    restart: always
+    
+  collect:
+    image: jipram017/event-tracing-collect:1.0.0
+    container_name: collect
+    depends_on:
+      - jaeger
+      - zookeeper
+      - broker
+      - config
+      - connect
+    environment:
+      - spring.kafka.bootstrap-servers=broker:29092
+      - collect.jaeger.host=http://jaeger
+      - collect.jaeger.port=14268
     restart: always
     
 volumes:

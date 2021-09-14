@@ -161,8 +161,6 @@ services:
   app4:
     image: jipram017/event-tracing-app4:1.0.0
     container_name: app4
-    depends_on:
-      - jaeger
     environment:
       - jaeger.tracer.host=jaeger
       - jaeger.tracer.port=6831
@@ -174,7 +172,6 @@ services:
     image: jipram017/event-tracing-app3:1.0.0
     container_name: app3
     depends_on:
-      - jaeger
       - zookeeper
       - broker
       - config
@@ -189,7 +186,6 @@ services:
     image: jipram017/event-tracing-app2:1.0.0
     container_name: app2
     depends_on:
-      - jaeger
       - zookeeper
       - broker
       - config
@@ -205,7 +201,6 @@ services:
     image: jipram017/event-tracing-app1:1.0.0
     container_name: app1
     depends_on:
-      - jaeger
       - zookeeper
       - broker
       - config
@@ -220,7 +215,6 @@ services:
     image: jipram017/event-tracing-collect:1.0.0
     container_name: collect
     depends_on:
-      - jaeger
       - zookeeper
       - broker
       - config

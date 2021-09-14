@@ -5,7 +5,7 @@ This project simulates tracing of multiple microservices using OpenTracing and J
 The system collects trace injected into either Kafka headers or HTTP headers and the trace/span will be displayed through Jaeger UI.
 
 
-file:///D:/Learnings/jaeger-app.drawio.html
+[a link] file:///D:/Learnings/jaeger-app.drawio.html
 
 
 There are 2 branches for this project:

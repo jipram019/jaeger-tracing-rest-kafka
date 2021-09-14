@@ -16,25 +16,25 @@ import java.util.Properties;
 public class ConsumerConfig {
     private final Tracer tracer;
 
-    @Value("${app1.kafka.bootstrap-servers}")
+    @Value("${kafka.bootstrap-servers}")
     String bootstrapServers;
 
-    @Value("${app1.kafka.consumer.max-poll-records}")
+    @Value("${kafka.consumer.max-poll-records}")
     String maxPollRecords;
 
-    @Value("${app1.kafka.consumer.enable-auto-commit}")
+    @Value("${kafka.consumer.enable-auto-commit}")
     String enableAutoCommit;
 
-    @Value("${app1.kafka.consumer.auto-offset-reset}")
+    @Value("${kafka.consumer.auto-offset-reset}")
     String autoOffsetReset;
 
-    @Value("${app1.kafka.consumer.group-id}")
+    @Value("${kafka.consumer.group-id}")
     String groupId;
 
-    @Value("${app1.kafka.consumer.client-id}")
+    @Value("${kafka.consumer.client-id}")
     String clientId;
 
-    @Value("${app1.kafka.input-topic}")
+    @Value("${kafka.input-topic}")
     String inputTopic;
 
     public ConsumerConfig(Tracer tracer) {

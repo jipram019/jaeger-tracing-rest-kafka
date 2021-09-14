@@ -27,10 +27,10 @@ public class OutputProducer {
         this.kafkaProducer = kafkaProducer;
     }
 
-    @Value("${app1.kafka.output-topic}")
+    @Value("${kafka.output-topic}")
     private String outputTopic;
 
-    @Value("${app1.kafka.input-topic}")
+    @Value("${kafka.input-topic}")
     private String inputTopic;
 
     @EventListener(ContextRefreshedEvent.class)

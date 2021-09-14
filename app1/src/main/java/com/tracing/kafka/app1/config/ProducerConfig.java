@@ -14,7 +14,7 @@ import java.util.Properties;
 public class ProducerConfig {
     private final Tracer tracer;
 
-    @Value("${app1.kafka.bootstrap-servers}")
+    @Value("${kafka.bootstrap-servers}")
     String bootstrapServers;
 
     public ProducerConfig(Tracer tracer) {

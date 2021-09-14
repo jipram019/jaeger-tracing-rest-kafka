@@ -211,7 +211,7 @@ services:
       - config
       - connect
     environment:
-      - spring.kafka.bootstrap-servers=broker:29092
+      - kafka.bootstrap-servers=broker:29092
       - jaeger.tracer.host=jaeger
       - jaeger.tracer.port=6831
     restart: always

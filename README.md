@@ -1,12 +1,14 @@
 # Distributed Tracing with Jaeger and OpenTracing
 
-This project will simulate tracing of multiple microservices using OpenTracing and Jaeger.
+This project simulates tracing of multiple microservices using OpenTracing and Jaeger.
 
 The system collects trace injected into either Kafka headers or HTTP headers and the trace/span will be displayed through Jaeger UI.
 
 
 
-For now, the system still have a single point of failure since all the traces all collected directly into Jaeger endpoint.
+
+There are 2 branches for this project:
+The master branch containing source code for system with single point of failure since all the traces from each app are collected directly into Jaeger endpoint.
 
 app3 (KafkaProducer, KafkaStream) --> Jaeger endpoint
 
@@ -16,6 +18,17 @@ app1 (KafkaConsumer, KafkaProducer) --> Jaeger endpoint
 
 app4 (RESTServices) --> Jaeger endpoint
 
+
+
+The collector-app branch containing source code for system with more resilient, fault tolerant span orchestration of which traces from each app are sent into collector app which the collector then consumes span from kafka topic. The collector then send the traces to Jaeger endpoint thorugh HTTP Call.
+
+app3 (KafkaProducer, KafkaStream) --> collector-app (KafkaConsumer) --> Jaeger endpoint
+
+app2 (KafkaProducer, KafkaConsumer, REST HTTP Call) --> collector-app (KafkaConsumer) --> Jaeger endpoint
+
+app1 (KafkaConsumer, KafkaProducer) --> collector-app (KafkaConsumer) --> Jaeger endpoint
+
+app4 (RESTServices) --> collector-app (KafkaConsumer) --> Jaeger endpoint
 
 
 

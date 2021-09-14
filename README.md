@@ -4,10 +4,8 @@ This project simulates tracing of multiple microservices using OpenTracing and J
 
 The system collects trace injected into either Kafka headers or HTTP headers and the trace/span will be displayed through Jaeger UI.
 
+![image](https://user-images.githubusercontent.com/90596761/133256169-9e7e7834-87d7-461d-b52b-827f06b26694.png)
 
-
-![image](https://user-images.githubusercontent.com/90596761/133255204-747e4298-c0df-4226-9b74-875a6fe3cb65.png)
-Intended architecture
 
 
 There are 2 branches for this project:

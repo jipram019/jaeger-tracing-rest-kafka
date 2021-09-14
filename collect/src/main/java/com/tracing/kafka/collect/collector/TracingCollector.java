@@ -36,7 +36,7 @@ public class TracingCollector {
             jaegerClient.dumpTrace(record.value());
         } catch (Exception e) {
             String message = String.format("Unable to send spans to Jaeger, retrying offset %s", record.offset());
-            logger.error("{}, but first sleep for {}", message, SLEEP_DURATION_IN_SECONDS);
+            logger.error("{}, but first sleep for {} seconds", message, SLEEP_DURATION_IN_SECONDS);
             try {
                 Thread.sleep(SLEEP_DURATION_IN_SECONDS * 1000);
             } catch (InterruptedException ex) {

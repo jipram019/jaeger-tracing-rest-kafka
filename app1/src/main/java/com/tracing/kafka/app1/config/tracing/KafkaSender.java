@@ -33,7 +33,7 @@ public class KafkaSender extends ThriftSender {
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
 
-        kafkaProducer = new KafkaProducer<String, byte[]>(properties);
+        kafkaProducer = new KafkaProducer<>(properties);
         topic = tracingTopic;
     }
 
@@ -52,7 +52,7 @@ public class KafkaSender extends ThriftSender {
             ProducerRecord<String, byte[]> record = new ProducerRecord<>(topic, bytes);
             kafkaProducer.send(record, (RecordMetadata recordMetadata, Exception exception) -> {
                 if(exception != null){
-                    logger.error(String.format("Could not send {} spans to tracingTopic", spans.size()));
+                    logger.error(String.format("Could not send {} spans to tracingTopic", spans.size()), exception);
                 }
             });
         }

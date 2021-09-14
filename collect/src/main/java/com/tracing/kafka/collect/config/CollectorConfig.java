@@ -34,7 +34,7 @@ public class CollectorConfig {
     @Bean
     public ConsumerFactory<?,?> kafkaConsumerFactory(){
         Map<String, Object> properties = kafkaProperties.buildConsumerProperties();
-        return new DefaultKafkaConsumerFactory<>(properties);
+        return new DefaultKafkaConsumerFactory(properties);
     }
 
     @Bean

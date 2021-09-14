@@ -20,7 +20,6 @@ public class JaegerClient {
 
     private final OkHttpClient okHttpClient;
     private final Request.Builder requestBuilder;
-    private final TProtocolFactory protocolFactory;
     private final TDeserializer tDeserializer;
 
     public JaegerClient(String jaegerHost, Integer jaegerPort) throws TTransportException {
@@ -30,9 +29,10 @@ public class JaegerClient {
             throw new IllegalArgumentException("Could not parse url");
         }
 
-        this.protocolFactory = new TBinaryProtocol.Factory();
         this.okHttpClient = new OkHttpClient.Builder().build();
         this.requestBuilder = new Request.Builder().url(httpUrl);
+
+        TProtocolFactory protocolFactory = new TBinaryProtocol.Factory();
         this.tDeserializer = new TDeserializer(protocolFactory);
     }
 
@@ -49,10 +49,6 @@ public class JaegerClient {
     public void dumpTrace(byte[] payload) throws SenderException {
         /** Trace will be sent to Jaeger endpoint in the form of Batch **/
         Batch batch = deserializePayload(payload);
-
-        if(batch==null || batch.getSpans()==null){
-            throw new SenderException("Empty batch",null, 0);
-        }
 
         int size = batch.getSpans().size();
         logger.info("Sending {} spans to Jaeger", size);

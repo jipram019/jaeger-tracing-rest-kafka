@@ -202,7 +202,7 @@ services:
     restart: always
     
   app1:
-    image: jipram017/event-tracing-app1:0.0.1
+    image: jipram017/event-tracing-app1:0.0.2
     container_name: app1
     depends_on:
       - jaeger
